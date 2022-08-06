@@ -14,12 +14,6 @@ print("##### NEW WORD", "".join(sorted(word)), "#####")
 
 words_ = set(words.words())
 
-likeliness = {
-  0: {4: [], 5: [], 6: [], 7:[], 8: [], 9:[]},
-  1: {4: [], 5: [], 6: [], 7:[], 8: [], 9:[]},
-  2: {4: [], 5: [], 6: [], 7:[], 8: [], 9:[]}
-}
-
 def print_correct(w, syn, certainty):
   if syn:
     print(" "*(2-certainty), "!"*certainty, w, "=", syn[0].definition())
