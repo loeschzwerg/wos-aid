@@ -13,9 +13,6 @@ words_ = set(words.words())
 MINIMUM_WORD_LENGTH = 4
 MINIMUM_CHAR_POOL_LENGTH = 6
 
-def print_correct(w, syn, certainty):
-  if syn:
-    print(" " * (2 - certainty), "!" * certainty, w, "=", syn[0].definition())
 
 def handle_input(word: str) -> str:
   """Handle interactive input. This input has four options: (-|+|!|q)"""
@@ -39,6 +36,10 @@ def handle_input(word: str) -> str:
   else:
     print("ERROR: Input not recognized")
     return handle_input(word)
+
+def print_correct(w, syn, certainty):
+  if syn:
+    print(" " * (2 - certainty), "!" * certainty, w, "=", syn[0].definition())
 
 def check_permutations(word: str):
   for cnt in range(MINIMUM_WORD_LENGTH, len(word) + 1):
