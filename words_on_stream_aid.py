@@ -4,14 +4,9 @@ from itertools import permutations
 from string import ascii_lowercase
 
 from nltk.corpus import words, wordnet
-# nltk.download('words')
-# nltk.download('wordnet')
-
-if argv[1]:
-  word = argv[1]
-else:
-  print("Give input, LUL")
-print("##### NEW WORD", "".join(sorted(word)), "#####")
+import nltk
+nltk.download('words')
+nltk.download('wordnet')
 
 words_ = set(words.words())
 
