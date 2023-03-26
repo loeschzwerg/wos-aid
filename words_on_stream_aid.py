@@ -43,8 +43,7 @@ def handle_input(word: str) -> str:
     return handle_input(word)
 
 def print_correct(w, syn, certainty):
-  if syn:
-    print(" " * (2 - certainty), "!" * certainty, w, "=", syn[0].definition())
+  print(" " * (2 - certainty), "!" * certainty, w, "=", syn[0].definition())
 
 def check_permutations(word: str):
   # t0, t1, t2, t3, t4 = time(), time(), time(), time(), time() # start, start #1, step #1, start #2, step #2
@@ -60,10 +59,12 @@ def check_permutations(word: str):
         for c in ascii_lowercase:
           rep = w.replace("?", c)
           syn = wordnet.synsets(rep)
-          print_correct(rep, syn, 0)
+          if syn:
+            print_correct(rep, syn, 0)
       else:
         syn = wordnet.synsets(w)
-        print_correct(w, syn, 2 if w in words_set else 1)
+        if syn:
+          print_correct(w, syn, 2 if w in words_set else 1)
       # t4 = time()
     # t2 = time()
     # print("step={:.2f}s | total={:.2f}s".format(t2-t1, t2-t0))
