@@ -4,11 +4,14 @@ from itertools import permutations
 from string import ascii_lowercase
 
 from nltk.corpus import words, wordnet
-import nltk
-nltk.download('words')
-nltk.download('wordnet')
+from nltk import download
+download('words')
+download('wordnet')
 
-words_ = set(words.words())
+# O(1) lookup
+words_set = set(words.words())
+
+### start handling words
 
 MINIMUM_WORD_LENGTH = 4
 MINIMUM_CHAR_POOL_LENGTH = 6
@@ -53,7 +56,7 @@ def check_permutations(word: str):
           print_correct(rep, syn, 0)
       else:
         syn = wordnet.synsets(w)
-        print_correct(w, syn, 2 if w in words_ else 1)
+        print_correct(w, syn, 2 if w in words_set else 1)
 
 if __name__=="__main__":
 
