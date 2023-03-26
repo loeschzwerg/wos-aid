@@ -15,7 +15,7 @@ words_set = set(words.words())
 ### start handling words
 
 MINIMUM_WORD_LENGTH = 4
-MINIMUM_CHAR_POOL_LENGTH = 6
+MINIMUM_CHAR_POOL_LENGTH = 5
 
 
 def handle_input(word: str) -> str:
