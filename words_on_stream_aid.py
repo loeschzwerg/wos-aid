@@ -1,5 +1,5 @@
 from sys import argv
-from time import sleep
+from time import sleep, time
 from itertools import permutations
 from string import ascii_lowercase
 
@@ -39,6 +39,7 @@ def handle_input(word: str) -> str:
     exit(0)
   else:
     print("ERROR: Input not recognized")
+    sleep(1) # let the user read the message
     return handle_input(word)
 
 def print_correct(w, syn, certainty):
@@ -46,10 +47,15 @@ def print_correct(w, syn, certainty):
     print(" " * (2 - certainty), "!" * certainty, w, "=", syn[0].definition())
 
 def check_permutations(word: str):
+  # t0, t1, t2, t3, t4 = time(), time(), time(), time(), time() # start, start #1, step #1, start #2, step #2
   for cnt in range(MINIMUM_WORD_LENGTH, len(word) + 1):
     print(f"--- {cnt} letters ---")
+    # t1 = time()
     perms = {"".join(x) for x in set(permutations(word, cnt))}
+    # t2 = time()
+    # print("Permutations={:.2f}s | total={:.2f}s".format(t2-t1, t2-t0))
     for w in sorted(perms):
+      # t3 = time()
       if '?' in w:
         for c in ascii_lowercase:
           rep = w.replace("?", c)
@@ -58,6 +64,10 @@ def check_permutations(word: str):
       else:
         syn = wordnet.synsets(w)
         print_correct(w, syn, 2 if w in words_set else 1)
+      # t4 = time()
+    # t2 = time()
+    # print("step={:.2f}s | total={:.2f}s".format(t2-t1, t2-t0))
+  # print(f"last step={t4-t3:.4f} | last range={t4-t1:.4f} | total={t4-t0:.4f}")
 
 if __name__=="__main__":
 
