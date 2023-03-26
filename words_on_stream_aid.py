@@ -7,6 +7,7 @@ from nltk.corpus import words, wordnet
 from nltk import download
 download('words')
 download('wordnet')
+del download
 
 # O(1) lookup
 words_set = set(words.words())
